@@ -2,17 +2,17 @@
 author:
   name: Dave Russell
   email: drussell@linode.com
-description: 'Our guide to upgrading to Ubuntu 14.04 LTS'
-keywords: 'upgrading,ubuntu,ubuntu 14.04'
+description: 'Our guide to upgrading to Ubuntu 16.04 LTS'
+keywords: 'upgrading,ubuntu,ubuntu 16.04'
 license: '[CC BY-ND 3.0](http://creativecommons.org/licenses/by-nd/3.0/us/)'
-modified: Sunday, February 22, 2015
+modified: Monday, April 25, 2016
 modified_by:
-  name: Dave Russell
+  name: Rudi Heitbaum
 published: 'Tuesday, October 21st, 2014'
-title: 'How to Upgrade to Ubuntu 14.04 LTS'
+title: 'How to Upgrade to Ubuntu 16.04 LTS'
 ---
 
-Ubuntu 14.04 is a long-term support (LTS) release that will be supported until April 2019. This guide explains how to upgrade your Linode from Ubuntu 12.04 (Precise Pangolin) to Ubuntu 14.04 (Trusty Tahr).
+Ubuntu 16.04 is a long-term support (LTS) release that will be supported until April 2021. This guide explains how to upgrade your Linode from Ubuntu 14.04 (Trusty Tahr) to Ubuntu 16.04 (Xenial Xerus).
 
  {: .caution }
  >Distribution upgrades can yield unpredictable results, due to variations in software stacks. When possible, we recommend:
@@ -44,13 +44,9 @@ Before upgrading, you will need to prepare your Linode to be upgraded. In order 
 
 Each of these will be discussed in more detail below.
 
-{: .note }
->
->In the interest of security, Ubuntu 14.04 LTS disables password based SSH authentication for the root user.  If you log into your root account directly via SSH, you will need to ensure that you have configured key based authentication prior to following these upgrade steps.  If you have already followed our steps for [adding a new user](/docs/security/securing-your-server/#adding-a-new-user) to your Linode, you should be able to log in with that account after the upgrade process has completed.
-
 ### Installing Available Updates
 
-You should install all available updates for Ubuntu 12.04 LTS before upgrading to Ubuntu 14.04 LTS. You can do so by running these commands:
+You should install all available updates for Ubuntu 14.04 LTS before upgrading to Ubuntu 16.04 LTS. You can do so by running these commands:
 
 1.  Update your package lists by entering the following command:
 
@@ -60,7 +56,7 @@ You should install all available updates for Ubuntu 12.04 LTS before upgrading t
 
         apt-get upgrade
 
-Any available updates for Ubuntu 12.04 LTS will be installed on your Linode.
+Any available updates for Ubuntu 14.04 LTS will be installed on your Linode.
 
 ### Backing Up Your Linode
 
@@ -76,11 +72,11 @@ We recommend that you stop as many services as possible before upgrading to Ubun
 
     service apache2 stop
 
-You are now ready to install Ubuntu 14.04 LTS on your Linode.
+You are now ready to install Ubuntu 16.04 LTS on your Linode.
 
-## Upgrading from Ubuntu 12.04 LTS
+## Upgrading from Ubuntu 14.04 LTS
 
-Here's how to upgrade from Ubuntu 12.04 LTS to Ubuntu 14.04 LTS:
+Here's how to upgrade from Ubuntu 14.04 LTS to Ubuntu 16.04 LTS:
 
 1.  If it's not already installed, enter the following command to install the `update-manager-core` package:
 
@@ -123,13 +119,30 @@ Here's how to upgrade from Ubuntu 12.04 LTS to Ubuntu 14.04 LTS:
 8.  You should see output that resembles the following:
 
         DISTRIB_ID=Ubuntu
-        DISTRIB_RELEASE=14.04
-        DISTRIB_CODENAME=trusty
-        DISTRIB_DESCRIPTION="Ubuntu 14.04.1 LTS"
+        DISTRIB_RELEASE=16.04
+        DISTRIB_CODENAME=xenial
+        DISTRIB_DESCRIPTION="Ubuntu 16.04 LTS"
 
-Your Linode is now running Ubuntu 14.04 LTS.
+Your Linode is now running Ubuntu 16.04 LTS.
 
+9.  Following your first reboot - you may want to remove automatically installed and are no longer required packages
+
+        apt autoremove
+
+        Reading package lists... Done
+        Building dependency tree
+        Reading state information... Done
+        The following packages will be REMOVED:
+          acl adwaita-icon-theme aptitude-common ....
+        0 upgraded, 0 newly installed, 105 to remove and 0 not upgraded.
+        After this operation, xxx MB disk space will be freed.
+        Do you want to continue? [Y/n]
+
+    Type `y` and `return` to continue.
+
+        (Reading database ... xxxx files and directories currently installed.)
+        Removing .... 
 
 ## Upgrading from Previous Ubuntu Releases
 
-If your Linode is running an release of Ubuntu older than 12.04 LTS, use the upgrade guides in the [Upgrading](/docs/security/upgrading) section to upgrade to Ubuntu 12.04 LTS first. You may then upgrade your Linode to Ubuntu 14.04 LTS.
+If your Linode is running an release of Ubuntu older than 14.04 LTS, use the upgrade guides in the [Upgrading](/docs/security/upgrading) section to upgrade to Ubuntu 14.04 LTS first. You may then upgrade your Linode to Ubuntu 16.04 LTS.
